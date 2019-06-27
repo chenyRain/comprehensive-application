@@ -1,0 +1,17 @@
+ul,li{
+    margin: 0;
+    padding: 0;
+}
+.at-once {
+    width: 100%;
+}
+.seckilling {
+    display: none;
+}
+.facebook-date {
+    font-weight: bold;
+    color: #c7254e;
+}
+.prize,.look-prize {
+    width: 100%;
+}
