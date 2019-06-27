@@ -4,6 +4,10 @@ namespace App\Services;
 use Hhxsv5\LaravelS\Swoole\WebSocketHandlerInterface;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
+use Swoole\Http\Request;
+use Swoole\WebSocket\Server;
+use Swoole\WebSocket\Frame;
+
 
 /**
  * @see https://wiki.swoole.com/wiki/page/400.html
@@ -25,7 +29,7 @@ class WebSocketService implements WebSocketHandlerInterface
      * @param \swoole_websocket_server $server
      * @param \swoole_http_request $request
      */
-    public function onOpen(\swoole_websocket_server $server, \swoole_http_request $request)
+    public function onOpen(Server $server, Request $request)
     {
         // 处理用户ID
         $uid = intval(ltrim($request->server['request_uri'],'/'));
@@ -76,7 +80,7 @@ class WebSocketService implements WebSocketHandlerInterface
      * @param \swoole_websocket_server $server
      * @param \swoole_websocket_frame $frame
      */
-    public function onMessage(\swoole_websocket_server $server, \swoole_websocket_frame $frame)
+    public function onMessage(Server $server, Frame $frame)
     {
         try {
             // 获取对应用户ID
@@ -113,7 +117,7 @@ class WebSocketService implements WebSocketHandlerInterface
      * @param $fd
      * @param $reactorId
      */
-    public function onClose(\swoole_websocket_server $server, $fd, $reactorId)
+    public function onClose(Server $server, $fd, $reactorId)
     {
         try {
             // 获取对应用户ID
