@@ -2,6 +2,9 @@ ul,li{
     margin: 0;
     padding: 0;
 }
+* {
+    touch-action: none;
+}
 .p_intro{
     font-size: 0.7rem;
     color: black;

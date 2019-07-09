@@ -14,19 +14,23 @@
     </header>
 @endsection
 
-@section('content')
-    <div class="chat-content" data-id="{{ $user->id }}">
-        <ul class="chart-list">
-
-        </ul>
-    </div>
-    <div class="input-content">
+@section('nav')
+    <!-- 输入框 -->
+    <footer class="bar bar-tab input-father">
         <div class="input-say">
-            <input type="text" id="input-say" class="input-item" placeholder="请输入需要说的话~">
+            <input type="text" id="input-say" class="input-item" placeholder="打个招呼吧~">
         </div>
         <div class="chat-button">
-            <button class="button button-big button-fill button-success button-send">发送</button>
+            <button class="button-send">发送</button>
         </div>
+    </footer>
+@endsection
+
+@section('content')
+    <div class="chat-content" data-id="{{ $user->id }}">
+        <ul class="chat-list">
+
+        </ul>
     </div>
 @endsection
 

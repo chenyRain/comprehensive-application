@@ -40,7 +40,7 @@ $(function () {
                         '                </div>\n' +
                         '        </li>';
 
-                    $('.comment-list').append(html);
+                    $('.comment-list').children("li:first-child").before(html);
                     $('.comment-textarea').val('');
                     $('.comment-button').removeAttr('disabled');
                     $.toast(back.msg);

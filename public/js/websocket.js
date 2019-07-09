@@ -1,8 +1,14 @@
 $(function() {
     chat.init();
 
-    $(".button-send").click(function(){
+    $('.button-send').click(function () {
         chat.sendMsg();
+    });
+
+    $(document).keyup(function(event){
+        if(event.keyCode === 13){
+            chat.sendMsg();
+        }
     });
 });
 
@@ -59,17 +65,17 @@ var chat = {
     removeUser: function(list) {
         var html = '';
         $.each(list, function (key, value) {
-            html += '<li>'
-                + '<div class="item-content">'
-                + '<div class="item-inner">'
-                + '<div class="item-title">'+ value.name +'</div>'
-                + '</div></div></li>';
+            html += '<li class="chat-li"><a class="line-user" href="javascript:;">'+ value.name +'</a></li>';
         });
         $(".user-list").empty().append(html);
     },
     sendMsg : function() {
 
         var content = $('#input-say').val();
+        if (content.length < 1) {
+            $.toast('请输入内容');
+            return false;
+        }
         if (content.length > 30) {
             $.toast('发送内容不能超过30个字符~');
             return false;
@@ -79,13 +85,13 @@ var chat = {
     },
     newMessage : function(data) {
         var uid = $('.chat-content').attr('data-id');
-        var chat_my = '';
+        var user_my = '';
         if (uid == data.uid) {
-            chat_my = 'chat-my';
+            user_my = 'user-my';
         }
-        var html = '<li class="'+chat_my+'"><div class="user-name">'+data.name+'</div>'
-            + '<div class="user-content">'+data.message+'</div></li>';
-        $('.chart-list').append(html);
+        var html = '<li class="chat-li '+ user_my +'"><p class="user-name">'+ data.name +'</p>'
+            + '<p class="user-content">'+ data.message +'</p></li>';
+        $('.chat-list').append(html);
     },
     notice : function(msg) {
         $.toast(msg);
@@ -93,11 +99,7 @@ var chat = {
     appendUser : function(list) {
         var html = '';
         $.each(list, function (key, value) {
-            html += '<li>'
-                + '<div class="item-content">'
-                + '<div class="item-inner">'
-                + '<div class="item-title">'+ value.name +'</div>'
-                + '</div></div></li>';
+            html += '<li class="chat-li"><a class="line-user" href="javascript:;">'+ value.name +'</a></li>';
         });
         $(".user-list").empty().append(html);
     }

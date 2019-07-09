@@ -9,8 +9,9 @@
     @section('css')
     <link rel="stylesheet" href="{{ asset('css/light7.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     @show
-    <title>自玩多元化</title>
+    <title>应用中心</title>
 </head>
 <body>
 <!-- page 容器 -->
