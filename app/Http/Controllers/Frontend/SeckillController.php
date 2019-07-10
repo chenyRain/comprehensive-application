@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Goods;
 use Illuminate\Http\Request;
-use App\Http\Controllers\BasicController;
 
 class SeckillController extends BasicController
 {

@@ -23,9 +23,7 @@
     @yield('nav')
 
     <!-- 这里是页面内容区 -->
-    <div class="content infinite-scroll infinite-scroll-bottom" data-distance="20">
-        @yield('content')
-    </div>
+    @yield('content')
 </div>
 <!-- popup, panel 等放在这里 -->
 @yield('sidebar')

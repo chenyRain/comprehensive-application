@@ -92,6 +92,7 @@ var chat = {
         var html = '<li class="chat-li '+ user_my +'"><p class="user-name">'+ data.name +'</p>'
             + '<p class="user-content">'+ data.message +'</p></li>';
         $('.chat-list').append(html);
+        $('.chat-content').scrollTop($('.chat-list').height())
     },
     notice : function(msg) {
         $.toast(msg);

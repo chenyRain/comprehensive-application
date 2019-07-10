@@ -18,6 +18,7 @@
 @endsection
 
 @section('content')
+<div class="content">
     <div id="list-block-login" class="list-block">
         <ul>
             <!-- Text inputs -->
@@ -50,4 +51,5 @@
             <div class="col-100 login"><a href="#" class="button button-big button-fill button-success">登 录</a></div>
         </div>
     </div>
+</div>
 @endsection

@@ -61,7 +61,7 @@ class WebSocketService implements WebSocketHandlerInterface
                 'type' => 'open',
                 'name' => $name,
                 'uid' => $uid,
-                'message' => '欢迎 '. $name . ' 来到聊天室',
+                'message' => '欢迎 <b class="chat-notice">'. $name . '</b>  来到聊天室',
                 'list' => $user_list
             ];
 

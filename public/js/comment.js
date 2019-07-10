@@ -52,17 +52,17 @@ $(function () {
         });
     });
 
+
     // 下拉分页评论列表
     var loading = false;
     var page = 1; // 分页数
-    $(document).on('infinite', '.infinite-scroll-bottom',function() {
+    $(document).on('infinite', '.content',function() {
         // 如果正在加载，则退出
         if (loading) return;
         // 设置flag
         loading = true;
         page++; // 分页数
         var m_id = $('.comment-button').attr('attr-id'); // 应用ID
-        $('.infinite-scroll-preloader').empty().append('<div class="preloader"></div>'); // 加载图标
 
         $.ajax({
             url: '/comment/index',

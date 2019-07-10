@@ -14,41 +14,35 @@
 @endsection
 
 @section('content')
-<div class="list-block">
-    <ul>
-        <li class="align-top">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="col-50 comment-send">
-                        <a attr-id="{{ $m_id }}" class="button button-big button-fill button-success comment-button">发送</a>
-                    </div>
-                    <div class="item-input">
-                        <textarea class="comment-textarea" placeholder="文明上网，理性发言"></textarea>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-<div class="list-block media-list">
-    <ul class="comment-list">
-        @if(!empty($list))
-            @foreach($list as $item)
-        <li>
-            <div class="item-inner">
-                <div class="item-title-row">
-                    <div class="item-title comment-username">{{ $item->name }}</div>
-                    <div class="item-after time-color">{{ $item->ctime }}</div>
-                </div>
-                <div class="item-text comment-content">{{ $item->content }}</div>
-            </div>
-        </li>
-            @endforeach
-        @endif
-    </ul>
+<div class="content infinite-scroll" data-distance="20">
+    <div class="comment-send">
+        <div class="send-textarea">
+            <textarea class="comment-textarea" placeholder="文明上网，理性发言"></textarea>
+        </div>
+        <div class="send-button">
+            <button attr-id="{{ $m_id }}" class="button-success comment-button">发送</button>
+        </div>
+    </div>
+    <div class="list-block comment-list-div media-list">
+        <ul class="comment-list">
+            @if(!empty($list))
+                @foreach($list as $item)
+                    <li>
+                        <div class="item-inner">
+                            <div class="item-title-row">
+                                <div class="item-title comment-username">{{ $item->name }}</div>
+                                <div class="item-after time-color">{{ $item->ctime }}</div>
+                            </div>
+                            <div class="item-text comment-content">{{ $item->content }}</div>
+                        </div>
+                    </li>
+                @endforeach
+            @endif
+        </ul>
+    </div>
     <!-- 加载提示符 -->
     <div class="infinite-scroll-preloader">
-
+        <div class="preloader"></div>
     </div>
     <div class="page-bottom"></div>
 </div>

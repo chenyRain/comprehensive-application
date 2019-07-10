@@ -27,11 +27,13 @@
 @endsection
 
 @section('content')
+<div class="content">
     <div class="chat-content" data-id="{{ $user->id }}">
         <ul class="chat-list">
 
         </ul>
     </div>
+</div>
 @endsection
 
 @section('sidebar')
