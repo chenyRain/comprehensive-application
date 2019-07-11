@@ -12,14 +12,11 @@ $(function() {
     });
 });
 
-var config = {
-    server : 'ws://192.168.10.248:5801'
-};
+var config = ws_server;
 
 var chat = {
     data : {
-        wsServer : null,
-        info : {}
+        wsServer : null
     },
     init : function() {
         var uid = $('.chat-content').attr('data-id');

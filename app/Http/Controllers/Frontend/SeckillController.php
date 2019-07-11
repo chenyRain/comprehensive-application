@@ -16,4 +16,10 @@ class SeckillController extends BasicController
         $goods = Goods::find(1);
         return view('frontend.seckill', compact('goods'));
     }
+
+
+    public function start()
+    {
+
+    }
 }

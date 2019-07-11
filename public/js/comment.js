@@ -12,14 +12,15 @@ $(function () {
         var content = $('.comment-textarea').val();
         var m_id = $(this).attr('attr-id');
 
+        $.showIndicator();
         if (content == '') {
-            $.toast('请输入评论内容！');
             $.hideIndicator();
+            $.toast('请输入评论内容！');
             return false;
         }
         if (content.length > 140) {
-            $.toast('评论内容不能超过140个字！');
             $.hideIndicator();
+            $.toast('评论内容不能超过140个字！');
             return false;
         }
         $(this).attr('disabled', 'disabled');
@@ -43,8 +44,11 @@ $(function () {
                     $('.comment-list').children("li:first-child").before(html);
                     $('.comment-textarea').val('');
                     $('.comment-button').removeAttr('disabled');
+
+                    $.hideIndicator();
                     $.toast(back.msg);
                 } else {
+                    $.hideIndicator();
                     $.toast(back.msg);
                     return false;
                 }
@@ -63,6 +67,7 @@ $(function () {
         loading = true;
         page++; // 分页数
         var m_id = $('.comment-button').attr('attr-id'); // 应用ID
+        $('.infinite-scroll-preloader').empty().append('<div class="preloader"></div>');
 
         $.ajax({
             url: '/comment/index',

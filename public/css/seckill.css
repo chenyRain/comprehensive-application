@@ -16,3 +16,25 @@ ul,li{
     color: red;
     font-weight: 700;
 }
+.popup {
+    top: 50%;
+    left: 2.5%;
+    width: 95%;
+}
+.seckilling {
+    background-color: #c8c9cb;
+    border: 0;
+}
+.rule {
+    text-align: center;
+    margin-top: 15px;
+}
+.no-user-data {
+    text-align: center;
+    font-size: 14px;
+    color: #c8c9cb;
+    padding-bottom: 20px;
+}
+.rule-desc {
+    font-size: 16px;
+}

@@ -42,7 +42,7 @@
                                         <img src="{{ $module['img'] }}" width="44">
                                     </div>
                                     <div class="item-inner">
-                                        <p class="p_intro">{{ $module['desc'] }}</p>
+                                        <p class="p_intro index-desc">{{ $module['desc'] }}</p>
                                     </div>
                                 </li>
                             </ul>

@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-<div class="content infinite-scroll" data-distance="20">
+<div class="content infinite-scroll" data-distance="0">
     <div class="comment-send">
         <div class="send-textarea">
             <textarea class="comment-textarea" placeholder="文明上网，理性发言"></textarea>
@@ -41,9 +41,7 @@
         </ul>
     </div>
     <!-- 加载提示符 -->
-    <div class="infinite-scroll-preloader">
-        <div class="preloader"></div>
-    </div>
+    <div class="infinite-scroll-preloader"></div>
     <div class="page-bottom"></div>
 </div>
 @endsection

@@ -110,3 +110,7 @@ ul,li{
 .index-nav-a {
     height: 2rem !important;
 }
+.index-desc {
+    height: 100%;
+    line-height: normal;
+}
