@@ -13,3 +13,4 @@ bin/
 config/laravels.php
 storage/laravels.json
 .idea/
+storage/

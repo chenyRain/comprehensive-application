@@ -2,8 +2,6 @@
 
 namespace App\Services;
 use Hhxsv5\LaravelS\Swoole\WebSocketHandlerInterface;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redis;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Server;
 use Swoole\WebSocket\Frame;
@@ -15,6 +13,18 @@ use Swoole\WebSocket\Frame;
 class WebSocketService implements WebSocketHandlerInterface
 {
     /**
+     * 实例化的对象
+     * @var
+     */
+    public $obj;
+
+    /**
+     * URL参数
+     * @var array
+     */
+    public $data = [];
+
+    /**
      * 声明没有参数的构造函数
      * WebSocketService constructor.
      */
@@ -25,53 +35,40 @@ class WebSocketService implements WebSocketHandlerInterface
 
 
     /**
+     * 实例化指定对象类
+     * @param Request $request
+     */
+    private function setObj($request)
+    {
+        // 处理参数
+        $query = trim($request->server['request_uri'],'/');
+        $params = explode('/', $query);
+        $params_arr = [];
+        foreach ($params as $item) {
+            $params_arr[] = explode(':', $item);
+        }
+
+        $this->data = array_column($params_arr, 1, 0);
+
+        if ($this->data['type'] == 1) {
+            $this->obj = new ChatSocketService;
+        } elseif ($this->data['type'] == 2) {
+            $this->obj = new SeckillSocketService;
+        } else {
+            exit;
+        }
+    }
+
+
+    /**
      * 监听WebSocket连接打开事件，连接成功后，触发open事件
      * @param \swoole_websocket_server $server
      * @param \swoole_http_request $request
      */
     public function onOpen(Server $server, Request $request)
     {
-        // 处理用户ID
-        $uid = intval(ltrim($request->server['request_uri'],'/'));
-
-        try {
-            // 绑定fd
-            Redis::zadd('chatlist', $uid, $request->fd);
-
-            // 获取所有FD
-            $list = Redis::zrange('chatlist', 0, -1);
-
-            // 处理用户信息，用于列表
-            $user_list = array();
-            foreach ($list as $key => $value) {
-                // 获取对应用户ID
-                $user_id = Redis::zscore('chatlist', $value);
-                // 获取用户信息
-                $username = Redis::hget('userinfo', 'name:' . $user_id);
-
-                $user_list[$key]['uid'] = $uid;
-                $user_list[$key]['name'] = $username;
-            }
-
-            // 获取用户信息
-            $name = Redis::hget('userinfo', 'name:' . $uid);
-
-            // 推送进入聊天室通知的信息
-            $msg = [
-                'type' => 'open',
-                'name' => $name,
-                'uid' => $uid,
-                'message' => '欢迎 <b class="chat-notice">'. $name . '</b>  来到聊天室',
-                'list' => $user_list
-            ];
-
-            // 推送给所有人
-            foreach ($list as $value) {
-                $server->push($value, json_encode($msg));
-            }
-        } catch (\Exception $e) {
-            Log::info($e->getMessage(), array('uid' => $uid));
-        }
+        $this->setObj($request);
+        $this->obj->open($server, $request, $this->data);
     }
 
 
@@ -82,32 +79,7 @@ class WebSocketService implements WebSocketHandlerInterface
      */
     public function onMessage(Server $server, Frame $frame)
     {
-        try {
-            // 获取对应用户ID
-            $uid = Redis::zscore('chatlist', $frame->fd);
-            // 获取用户信息
-            $name = Redis::hget('userinfo', 'name:' . $uid);
-            // 获取所有FD
-            $list = Redis::zrange('chatlist', 0, -1);
-
-            // 过滤数据
-            $data = strip_tags($frame->data);
-            $data = htmlspecialchars($data);
-
-            $msg = [
-                'type' => 'message',
-                'message' => $data,
-                'name' => $name,
-                'uid' => $uid
-            ];
-
-            // 推送给所有人
-            foreach ($list as $value) {
-                $server->push($value, json_encode($msg));
-            }
-        } catch (\Exception $e) {
-            Log::info($e->getMessage(), array('fd' => $frame->fd));
-        }
+        $this->obj->message($server, $frame);
     }
 
 
@@ -119,43 +91,6 @@ class WebSocketService implements WebSocketHandlerInterface
      */
     public function onClose(Server $server, $fd, $reactorId)
     {
-        try {
-            // 获取对应用户ID
-            $uid = Redis::zscore('chatlist', $fd);
-            // 删除集合中用户信息
-            Redis::zrem('chatlist', $fd);
-
-            // 获取所有FD
-            $list = Redis::zrange('chatlist', 0, -1);
-
-            // 处理用户信息，用于列表
-            $user_list = array();
-            foreach ($list as $key => $value) {
-                // 获取对应用户ID
-                $user_id = Redis::zscore('chatlist', $value);
-                // 获取用户信息
-                $username = Redis::hget('userinfo', 'name:' . $user_id);
-
-                $user_list[$key]['uid'] = $uid;
-                $user_list[$key]['name'] = $username;
-            }
-
-            // 获取用户信息
-            $name = Redis::hget('userinfo', 'name:' . $uid);
-
-            $msg = [
-                'type' => 'close',
-                'uid' => $uid,
-                'message' => $name." 离开了聊天室",
-                'list' => $user_list
-            ];
-
-            // 推送给所有人
-            foreach ($list as $value) {
-                $server->push($value, json_encode($msg));
-            }
-        } catch (\Exception $e) {
-            Log::info($e->getMessage(), array('uid' => $uid));
-        }
+        $this->obj->close($server, $fd);
     }
 }

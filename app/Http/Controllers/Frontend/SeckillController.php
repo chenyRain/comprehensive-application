@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Goods;
+use App\Models\SeckillGoods;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeckillController extends BasicController
 {
@@ -13,13 +14,9 @@ class SeckillController extends BasicController
      */
     public function index()
     {
-        $goods = Goods::find(1);
-        return view('frontend.seckill', compact('goods'));
-    }
+        $goods = SeckillGoods::find(1);
+        $user = Auth::user();
 
-
-    public function start()
-    {
-
+        return view('frontend.seckill', compact('goods', 'user'));
     }
 }

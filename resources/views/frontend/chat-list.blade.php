@@ -28,7 +28,7 @@
 
 @section('content')
 <div class="content">
-    <div class="chat-content" data-id="{{ $user->id }}">
+    <div data-type="1" class="chat-content" data-id="{{ $user->id }}">
         <ul class="chat-list">
 
         </ul>
@@ -54,5 +54,5 @@
 @section('js')
     @parent
     <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/websocket.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
 @endsection
