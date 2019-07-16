@@ -22,8 +22,30 @@ $(function () {
     // 活动已结束
     if (nowTime > endMillisecond || status == 0) {
         $('.card-content-inner').empty().append('<button class="button disabled button-big button-fill button-danger at-once">活动尚未开启</button>');
-        $('.atonce-buy').addClass('disabled');
+        $('.at-once').addClass('disabled');
     }
+
+    $('.atonce-buy').click(function () {
+        var uid = $('.content').attr('data-id');
+
+        $.showIndicator();
+        $.ajax({
+            url: '/seckill/start',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                uid: uid
+            },
+            success: function (data) {
+                $.hideIndicator();
+                if (data.code == 1) {
+                    alert(11);
+                } else {
+                    alert(222);
+                }
+            }
+        });
+    });
 });
 
 
@@ -58,7 +80,8 @@ function getDate() {
         if ((endMillisecond - nowTime) < 1000) {
             clearInterval(Timer);
             $('.card-content-inner').empty().append('<button class="button disabled button-big button-fill button-danger at-once">活动尚未开启</button>');
-            $('.atonce-buy').addClass('disabled');
+            $('.at-once').addClass('disabled');
+            $('.at-once').removeClass('atonce-buy');
             return;
         }
         activityDate = endMillisecond;
@@ -100,7 +123,8 @@ function getDate() {
                     '<b class="seckill-time second">'+ second +'</b>' +
                     '</p>';
                 $('.card-content-inner').empty().append(endHtml);
-                $('.atonce-buy').removeClass('disabled');
+                $('.at-once').removeClass('disabled');
+                $('.at-once').addClass('atonce-buy');
             }
         } else {
             var endHtml = '<p class="button button-big button-round in-activity">进行中，距结束 ' +
@@ -109,7 +133,8 @@ function getDate() {
                 '<b class="seckill-time second">'+ second +'</b>' +
                 '</p>';
             $('.card-content-inner').empty().append(endHtml);
-            $('.atonce-buy').removeClass('disabled');
+            $('.at-once').removeClass('disabled');
+            $('.at-once').addClass('atonce-buy');
         }
 
     }

@@ -30,7 +30,7 @@
                 <img class='card-cover' src="{{ $goods->img }}" alt="商品图片">
             </div>
             <div class="card-footer">
-                <button class="button disabled button-big button-fill button-danger at-once atonce-buy">立即抢购</button>
+                <button class="button disabled button-big button-fill button-danger at-once">立即抢购</button>
             </div>
 
             <!-- 抢到人的名单 -->
