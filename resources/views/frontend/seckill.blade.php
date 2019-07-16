@@ -14,24 +14,20 @@
 @endsection
 
 @section('content')
-    <div data-type="2" data-super="{{ $user->is_super }}" class="content" data-id="{{ $user->id }}">
+    <div data-status="{{ $goods->status }}" data-start="{{ $goods->start_time }}" data-end="{{ $goods->end_time }}" class="content" data-id="{{ $user->id }}">
         <div class="card demo-card-header-pic">
             <div class="card-header no-border">
                 <div class="facebook-avatar"><a href="javascript:;" class="open-popup" data-popup=".popup-desc">说明</a></div>
-                <div class="facebook-name">{{ $goods['name'] }}</div>
-                <div class="facebook-date">库存：{{ $goods['repertory'] }}</div>
+                <div class="facebook-name">{{ $goods->name }}</div>
+                <div class="facebook-date">剩余库存：{{ $goods->repertory }}</div>
             </div>
             <div class="card-content">
                 <div class="card-content-inner">
-                    @if($user->is_super == 1)
-                        <button class="button button-big button-fill button-danger at-once start-activity">开启活动</button>
-                    @else
-                        <button class="button disabled button-big button-fill button-danger at-once">活动尚未开启</button>
-                    @endif
+                    <div class="empty-div"></div>
                 </div>
             </div>
             <div valign="bottom" class="card-header color-white no-border no-padding">
-                <img class='card-cover' src="{{ $goods['img'] }}" alt="商品图片">
+                <img class='card-cover' src="{{ $goods->img }}" alt="商品图片">
             </div>
             <div class="card-footer">
                 <button class="button disabled button-big button-fill button-danger at-once atonce-buy">立即抢购</button>
@@ -78,15 +74,11 @@
             </p>
             <br>
             <p>
-                2、秒杀开启时，会有10秒准备倒计时，倒计时结束，表示秒杀活动开始了，这时候可以点击立即抢购抢商品了。
+                2、每次活动结束后需要超级管理员再次开启活动，才能继续体验。
             </p>
             <br>
             <p>
-                3、每次活动结束后需要超级管理员再次开启活动，再能继续体验。
-            </p>
-            <br>
-            <p>
-                4、如果需要体验该功能，请联系应用超级管理员开启该活动。
+                3、如果需要体验该功能，请联系应用超级管理员开启该活动。
             </p>
         </div>
     </div>
@@ -94,6 +86,5 @@
 
 @section('js')
     @parent
-    <script type='text/javascript' src='{{ asset('js/common.js') }}'></script>
     <script type='text/javascript' src='{{ asset('js/seckill.js') }}'></script>
 @endsection

@@ -38,3 +38,6 @@ ul,li{
 .rule-desc {
     font-size: 16px;
 }
+.empty-div {
+    height: 2.4rem;
+}
