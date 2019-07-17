@@ -15,7 +15,7 @@ return [
     /**
      * 设置redis点赞key
      */
-    'index_like_key' => 'chat:like',
+    'index_like_key' => 'chat:like:',
 
     /**
      * 应用redis评论频率，单位S
