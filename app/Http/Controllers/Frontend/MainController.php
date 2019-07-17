@@ -73,7 +73,7 @@ class MainController extends BasicController
             }
 
             // 设置频率
-            if (! empty(Redis::get(config('frontend.index_like_key').$m_id))) {
+            if (! empty(Redis::get(config('frontend.index_like_key').$m_id.':'.Auth::id()))) {
                 throw new \Exception('操作太频繁了！');
             }
 
