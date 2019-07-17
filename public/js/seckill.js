@@ -25,24 +25,15 @@ $(function () {
         $('.at-once').addClass('disabled');
     }
 
-    $('.atonce-buy').click(function () {
-        var uid = $('.content').attr('data-id');
-
+    $('body').on('click','.atonce-buy',function () {
         $.showIndicator();
         $.ajax({
-            url: '/seckill/start',
+            url: '/seckill/buy',
             type: 'get',
             dataType: 'json',
-            data: {
-                uid: uid
-            },
             success: function (data) {
                 $.hideIndicator();
-                if (data.code == 1) {
-                    alert(11);
-                } else {
-                    alert(222);
-                }
+                $.toast(data.msg);
             }
         });
     });
@@ -82,6 +73,8 @@ function getDate() {
             $('.card-content-inner').empty().append('<button class="button disabled button-big button-fill button-danger at-once">活动尚未开启</button>');
             $('.at-once').addClass('disabled');
             $('.at-once').removeClass('atonce-buy');
+
+            getResult(); // 获取结果
             return;
         }
         activityDate = endMillisecond;
@@ -150,4 +143,35 @@ function getDate() {
  */
 function replenishTwo(n) {
     return n >= 0 && n < 10 ? '0' + n : '' + n;
+}
+
+function getResult() {
+    $.showIndicator();
+    $.ajax({
+        url: '/seckill/result',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+            $.hideIndicator();
+            if (data.code == 1) {
+                $('.repertory').text(data.result.repertory);
+                if (data.result.success.length < 1) {
+                    $('.seckill-result').empty().append('<p class="no-user-data">暂无用户数据</p>');
+                } else {
+                    var liHtml = '';
+                    $.each(data.result.success, function (i, val) {
+                        liHtml += '<li class="item-content">' +
+                            '<div class="item-inner">' +
+                            '<div class="item-title">'+ val +'</div>' +
+                            '<div class="item-after">x 1</div>' +
+                            '</div></li>';
+                    });
+
+                    $('.seckill-result').empty().append(liHtml);
+                }
+            } else {
+                $.toast(data.msg);
+            }
+        }
+    });
 }

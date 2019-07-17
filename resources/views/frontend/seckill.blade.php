@@ -14,12 +14,12 @@
 @endsection
 
 @section('content')
-    <div data-status="{{ $goods->status }}" data-start="{{ $goods->start_time }}" data-end="{{ $goods->end_time }}" class="content" data-id="{{ $user->id }}">
+    <div data-status="{{ $goods->status }}" data-start="{{ $goods->start_time }}" data-end="{{ $goods->end_time }}" class="content">
         <div class="card demo-card-header-pic">
             <div class="card-header no-border">
                 <div class="facebook-avatar"><a href="javascript:;" class="open-popup" data-popup=".popup-desc">说明</a></div>
                 <div class="facebook-name">{{ $goods->name }}</div>
-                <div class="facebook-date">剩余库存：{{ $goods->repertory }}</div>
+                <div class="facebook-date">剩余库存：<span class="repertory">{{ $goods->repertory }}</span></div>
             </div>
             <div class="card-content">
                 <div class="card-content-inner">
@@ -38,26 +38,8 @@
                 <a href="#" class="button button-fill look-prize">中奖用户名单</a>
             </div>
             <div class="list-block prize">
-                <ul>
+                <ul class="seckill-result">
                     <p class="no-user-data">暂无用户数据</p>
-                    {{--<li class="item-content">--}}
-                        {{--<div class="item-inner">--}}
-                            {{--<div class="item-title">起风了</div>--}}
-                            {{--<div class="item-after">x 1</div>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
-                    {{--<li class="item-content">--}}
-                        {{--<div class="item-inner">--}}
-                            {{--<div class="item-title">test</div>--}}
-                            {{--<div class="item-after">x 1</div>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
-                    {{--<li class="item-content">--}}
-                        {{--<div class="item-inner">--}}
-                            {{--<div class="item-title">宇哥啊</div>--}}
-                            {{--<div class="item-after">x 1</div>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
                 </ul>
             </div>
         </div>
