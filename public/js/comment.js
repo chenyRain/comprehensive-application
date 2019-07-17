@@ -31,6 +31,7 @@ $(function () {
             data: {'content' : content, 'm_id' : m_id},
             success: function (back) {
                 if (back.code == 1) {
+                    var is_li = $('.comment-list').find('li').length;
                     var html = '<li>\n' +
                         '            <div class="item-inner">\n' +
                         '                    <div class="item-title-row">\n' +
@@ -40,11 +41,14 @@ $(function () {
                         '                    <div class="item-text comment-content">' + back.result.content + '</div>\n' +
                         '                </div>\n' +
                         '        </li>';
+                    if (is_li > 0) {
+                        $('.comment-list').children("li:first-child").before(html);
+                    } else {
+                        $('.comment-list').append(html);
+                    }
 
-                    $('.comment-list').children("li:first-child").before(html);
                     $('.comment-textarea').val('');
                     $('.comment-button').removeAttr('disabled');
-
                     $.hideIndicator();
                     $.toast(back.msg);
                 } else {
