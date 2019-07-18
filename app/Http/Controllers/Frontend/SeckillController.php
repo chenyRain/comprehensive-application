@@ -31,11 +31,12 @@ class SeckillController extends BasicController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function start()
+    public function start(Request $request)
     {
+        $data = $request->input();
         try {
             $service = new SeckillService;
-            $service->setSeckill();
+            $service->setSeckill($data);
 
             $this->jsonRes['code'] = 1;
         } catch (\Exception $e) {

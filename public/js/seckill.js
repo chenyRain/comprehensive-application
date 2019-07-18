@@ -25,6 +25,7 @@ $(function () {
         $('.at-once').addClass('disabled');
     }
 
+    // 立即抢购
     $('body').on('click','.atonce-buy',function () {
         $.showIndicator();
         $.ajax({

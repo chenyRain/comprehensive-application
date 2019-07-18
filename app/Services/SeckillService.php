@@ -19,10 +19,27 @@ class SeckillService
      * 设置秒杀队列
      * @throws \Exception
      */
-    public function setSeckill()
+    public function setSeckill(array $data)
     {
+        if (empty($data['datetime_picker_end'])) {
+            throw new \Exception('结束时间不能为空');
+        }
+        if (empty($data['datetime_picker_start'])) {
+            throw new \Exception('开始时间不能为空');
+        }
+        if (empty($data['redis_max_user'])) {
+            throw new \Exception('队列允许人数不能为空');
+        }
+        if (empty($data['repertory'])) {
+            throw new \Exception('库存不能为空');
+        }
+        SeckillGoods::updateGoods(1, $data);
         $goodsInfo = SeckillGoods::find(1);
 
+        // 未开启活动直接返回
+        if ($data['status'] == 0) {
+            return;
+        }
         Redis::command('del', ['user_list', 'success']); // 初始化
 
         // 将商品添加到队列
