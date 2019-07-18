@@ -59,7 +59,7 @@
         </div>
         <div class="content-block">
             <div class="row">
-                <div class="col-100 register"><a href="#" class="button button-big button-fill button-success">登 录</a></div>
+                <div class="col-100 register"><a href="#" class="button button-big button-fill button-success">注 册</a></div>
             </div>
         </div>
     </div>
