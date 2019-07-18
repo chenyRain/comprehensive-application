@@ -21,7 +21,7 @@ var chat = {
     init : function() {
         var uid = $('.chat-content').attr('data-id');
         var type = $('.chat-content').attr('data-type');
-        this.data.wsServer = new WebSocket(config.server + '/type:' + type + '/uid:' + uid);
+        this.data.wsServer = new WebSocket(config.server + '?type:' + type + '&uid:' + uid);
         this.open();
         this.close();
         this.messages();

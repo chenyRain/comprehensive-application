@@ -41,19 +41,15 @@ class WebSocketService implements WebSocketHandlerInterface
     private function setObj($request)
     {
         // 处理参数
-        $query = trim($request->server['request_uri'],'/');
-        $params = explode('/', $query);
+        $params = explode('&', $request->server['query_string']);
         $params_arr = [];
         foreach ($params as $item) {
             $params_arr[] = explode(':', $item);
         }
-
         $this->data = array_column($params_arr, 1, 0);
 
         if ($this->data['type'] == 1) {
             $this->obj = new ChatSocketService;
-        } elseif ($this->data['type'] == 2) {
-            $this->obj = new SeckillSocketService;
         } else {
             exit;
         }
