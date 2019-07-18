@@ -73,7 +73,8 @@ class MainController extends BasicController
             }
 
             // 设置频率
-            if (! empty(Redis::get(config('frontend.index_like_key').$m_id.':'.Auth::id()))) {
+            $redis_like_key = config('frontend.index_like_key').$m_id.':'.Auth::id();
+            if (! empty(Redis::get($redis_like_key))) {
                 throw new \Exception('操作太频繁了！');
             }
 
@@ -100,7 +101,7 @@ class MainController extends BasicController
             }
 
             // 设置访问频率
-            Redis::setex(config('frontend.index_like_key').$m_id, config('frontend.index_like_time'), config('frontend.index_like_time'));
+            Redis::setex($redis_like_key, config('frontend.index_like_time'), config('frontend.index_like_time'));
 
             $this->jsonRes['code'] = 1;
         } catch (\Exception $e) {
