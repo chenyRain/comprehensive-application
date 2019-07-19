@@ -31,17 +31,32 @@ class ChatSocketService
                 throw new \Exception('用户ID不能为空');
             }
 
-            // 绑定fd
-            Redis::zadd('chat_list', $uid, $request->fd);
+            // 获取所有旧FD
+            $old_list = Redis::zrange('chat_list', 0, -1);
+            $user_id_all = array();
+            foreach ($old_list as $key => $value) {
+                // 获取对应用户ID
+                $user_id_all[] = Redis::zscore('chat_list', $value);
+            }
 
-            // 获取所有FD
-            $list = Redis::zrange('chat_list', 0, -1);
+            if (!empty($user_id_all) && in_array($uid, $user_id_all)) {
+                $fd = Redis::zrangebyscore('chat_list', $uid, $uid);
+                if (Redis::zrem('chat_list', $fd)) {
+                    // 绑定fd
+                    Redis::zadd('chat_list', $uid, $request->fd);
+                }
+            } else {
+                // 绑定fd
+                Redis::zadd('chat_list', $uid, $request->fd);
+            }
 
             // 处理用户信息，用于列表
+            $new_list = Redis::zrange('chat_list', 0, -1); // 获取所有新FD
             $user_list = array();
-            foreach ($list as $key => $value) {
+            foreach ($new_list as $key => $value) {
                 // 获取对应用户ID
                 $user_id = Redis::zscore('chat_list', $value);
+
                 // 获取用户信息
                 $username = Redis::hget('userinfo', 'name:' . $user_id);
 
@@ -62,7 +77,7 @@ class ChatSocketService
             ];
 
             // 推送给所有人
-            foreach ($list as $value) {
+            foreach ($new_list as $value) {
                 $server->push($value, json_encode($msg));
             }
         } catch (\Exception $e) {
@@ -87,19 +102,22 @@ class ChatSocketService
             $list = Redis::zrange('chat_list', 0, -1);
 
             // 过滤数据
-            $data = strip_tags($frame->data);
-            $data = htmlspecialchars($data);
-
+            $data = json_decode($frame->data, true);
+            dump($data);
+            $content = strip_tags($data['content']);
+            $content = htmlspecialchars($content);
             $msg = [
                 'type' => 'message',
-                'message' => $data,
+                'message' => $content,
                 'name' => $name,
                 'uid' => $uid
             ];
 
-            // 推送给所有人
-            foreach ($list as $value) {
-                $server->push($value, json_encode($msg));
+            if ($data['type'] == 'CHAT') {
+                // 推送给所有人
+                foreach ($list as $value) {
+                    $server->push($value, json_encode($msg));
+                }
             }
         } catch (\Exception $e) {
             WebsocketLog::insert(['type' => 1, 'content' => var_export(['msg' => $e->getMessage(), 'uid' => $uid, 'fd' => $frame->fd], true), 'ctime' => Carbon::now()]);
@@ -142,7 +160,7 @@ class ChatSocketService
             $msg = [
                 'type' => 'close',
                 'uid' => $uid,
-                'message' => $name." 离开了聊天室",
+                'message' => '用户 <b class="chat-notice">'. $name . '</b>  离开了聊天室',
                 'list' => $user_list
             ];
 
