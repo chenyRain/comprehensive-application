@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @section('css')
     <link rel="stylesheet" href="{{ asset('css/light7.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css?v=1.0.0') }}">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
     @show
     <title>应用中心</title>
