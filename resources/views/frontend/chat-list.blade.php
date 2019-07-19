@@ -2,7 +2,7 @@
 
 @section('css')
     @parent
-    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/chat.css?v=201907191219') }}">
 @endsection
 
 @section('head')

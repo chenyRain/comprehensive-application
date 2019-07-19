@@ -52,7 +52,7 @@ ul,li{
     color: blue;
 }
 .user-my .user-content {
-    background-color: #00fdfd73;
+    background-color: rgba(0,253,253,0.45);
 }
 .chat-li {
     margin: 20px;
@@ -62,7 +62,7 @@ ul,li{
     margin-bottom: 5px;
 }
 .user-content {
-    background-color: #f14e0073;
+    background-color: rgba(241,78,0,0.45);
     border-radius: 5px;
     padding: 0.5rem;
     text-align: left;
