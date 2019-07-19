@@ -109,6 +109,7 @@ class SeckillService
     {
         $goods = SeckillGoods::find(1);
         $goods->repertory = Redis::llen($goods->redis_key);
+        $goods->status = 0;
         $goods->save();
 
         $result['repertory'] = $goods->repertory;
