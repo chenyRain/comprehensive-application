@@ -68,5 +68,5 @@
 
 @section('js')
     @parent
-    <script type='text/javascript' src='{{ asset('js/seckill.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/seckill.js?v=1.0.0.1git ') }}'></script>
 @endsection
