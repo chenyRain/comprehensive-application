@@ -5,9 +5,11 @@ var objStartDate = new Date(startTime); // 开始时间对象
 var objEndDate = new Date(endTime); // 结束时间对象
 var startMillisecond = objStartDate.getTime(); // 开始时间毫秒数
 var endMillisecond = objEndDate.getTime(); // 结束时间毫秒数
-var objNowDate = new Date(); // 当前时间对象
-var nowTime = objNowDate.getTime(); // 当前时间毫秒数 1563250292561
+var nowTime = parseInt($('.card-content').attr('data-msec'));
 var windType = 1; // 1=开始，2=进行中
+var global_time = setInterval(function () {
+    nowTime = nowTime + 500;
+}, 500);
 
 $(function () {
     // 活动未开始倒计时
@@ -59,8 +61,6 @@ function run() {
  * @param type
  */
 function getDate() {
-    var objNowDate = new Date(); // 当前时间对象
-    var nowTime = objNowDate.getTime(); // 当前时间毫秒数 1563250292561
     var activityDate;
 
     if (windType == 1) {
@@ -76,6 +76,7 @@ function getDate() {
             $('.at-once').removeClass('atonce-buy');
 
             getResult(); // 获取结果
+            clearInterval(global_time);
             return;
         }
         activityDate = endMillisecond;

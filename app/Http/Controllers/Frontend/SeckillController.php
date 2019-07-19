@@ -16,6 +16,7 @@ class SeckillController extends BasicController
     public function index()
     {
         $goods = SeckillGoods::find(1);
+        $goods->now_time = $this->getServerMsec();
         $user = Auth::user();
 
         $template = 'frontend.seckill';
@@ -23,6 +24,17 @@ class SeckillController extends BasicController
             $template = 'frontend.set-seckill';
         }
         return view($template, compact('goods', 'user'));
+    }
+
+
+    /**
+     * 获取服务器毫秒数
+     * @return float
+     */
+    private function getServerMsec()
+    {
+        list($msec, $sec) = explode(' ', microtime());
+        return (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
     }
 
 

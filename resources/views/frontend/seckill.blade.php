@@ -21,7 +21,7 @@
                 <div class="facebook-name">{{ $goods->name }}</div>
                 <div class="facebook-date">剩余库存：<span class="repertory">{{ $goods->repertory }}</span></div>
             </div>
-            <div class="card-content">
+            <div class="card-content" data-msec="{{ $goods->now_time }}">
                 <div class="card-content-inner">
                     <div class="empty-div"></div>
                 </div>
