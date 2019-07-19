@@ -54,5 +54,5 @@
 @section('js')
     @parent
     <script type="text/javascript" src="{{ asset('js/common.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/chat.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chat.js?v=201907191721') }}"></script>
 @endsection

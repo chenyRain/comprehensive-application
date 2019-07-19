@@ -56,7 +56,6 @@ var chat = {
     },
     // 重连
     reconnect: function() {
-        console.log('正在执行重连');
         $.toast("socket连接断开，正在尝试重新建立连接...");
         if (this.data.lockReconnect) {
             return;
@@ -70,14 +69,12 @@ var chat = {
     },
     // 重置倒计时
     resetTimeout: function() {
-        console.log('正在重置倒计时');
         //接收成功一次推送，就将心跳检测的倒计时重置为30秒
         clearTimeout(this.data.timeoutObj);
         this.startHeartCheck();
     },
     // 开始检测心跳
     startHeartCheck: function() {
-        console.log('开始检测心跳了');
         this.data.timeoutObj = setTimeout(function () {
             chat.data.msg.type = 'HEART_BEAT';
             chat.data.msg.content = 1;
