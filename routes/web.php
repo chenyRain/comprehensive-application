@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('comment/store', 'CommentController@store')->name('comment.store');
         Route::get('publish', 'PublishController@index')->name('publish.index');
         Route::get('seckill', 'SeckillController@index')->name('seckill.index');
-        Route::get('seckill/start', 'SeckillController@start')->name('seckill.start');
+        Route::post('seckill/start', 'SeckillController@start')->name('seckill.start');
         Route::get('seckill/buy', 'SeckillController@buy')->name('seckill.buy');
         Route::get('seckill/result', 'SeckillController@result')->name('seckill.result');
     });

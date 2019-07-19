@@ -39,6 +39,7 @@ class SeckillController extends BasicController
             $service->setSeckill($data);
 
             $this->jsonRes['code'] = 1;
+            $this->jsonRes['msg'] = '配置成功！';
         } catch (\Exception $e) {
             $this->jsonRes['msg'] = $e->getMessage();
         }

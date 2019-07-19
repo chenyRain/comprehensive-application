@@ -1,4 +1,10 @@
 $(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $("#datetime-picker-start").datetimePicker({
         toolbarTemplate: '<header class="bar bar-nav">\
     <button class="button button-link pull-right close-picker">确定</button>\
@@ -37,17 +43,16 @@ $(function () {
             $.toast('请设置库存');
             return;
         }
-        console.log(data);
-        // $.showIndicator();
-        // $.ajax({
-        //     url: '/seckill/start',
-        //     type: 'post',
-        //     dataType: 'json',
-        //     data: data,
-        //     success: function (data) {
-        //         $.hideIndicator();
-        //         $.toast(data.msg);
-        //     }
-        // });
+        $.showIndicator();
+        $.ajax({
+            url: '/seckill/start',
+            type: 'post',
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                $.hideIndicator();
+                $.toast(data.msg);
+            }
+        });
     });
 });

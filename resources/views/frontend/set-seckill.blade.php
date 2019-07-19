@@ -65,7 +65,7 @@
                             <div class="item-title label">是否开启</div>
                             <div class="item-input">
                                 <label class="label-switch">
-                                    <input id="status" value="0" type="checkbox">
+                                    <input id="status" value="{{ $goods->status }}" type="checkbox" {{ $goods->status == 1? 'checked': '' }}>
                                     <div class="checkbox"></div>
                                 </label>
                             </div>
