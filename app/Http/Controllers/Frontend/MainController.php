@@ -30,7 +30,7 @@ class MainController extends BasicController
         $user = Auth::user();
 
         // 获取应用信息
-        $modules = Modules::where('is_show', 1)->get()->toArray();
+        $modules = Modules::where('is_show', 1)->orderBy('sort', 'desc')->get()->toArray();
 
         // 获取用户是否点赞
         $like = DB::table('like_user as lu')

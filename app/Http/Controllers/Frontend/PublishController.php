@@ -9,9 +9,12 @@
 namespace App\Http\Controllers\Frontend;
 
 
-use App\Http\Controllers\BasicController;
+use Illuminate\Support\Facades\Redis;
 
 class PublishController extends BasicController
 {
-
+    public function index()
+    {
+        Redis::publish('test-channel', json_encode(['test' => '啊啊四大']));
+    }
 }
