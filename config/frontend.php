@@ -26,4 +26,9 @@ return [
      * 设置应用redis评论key
      */
     'comment_key' => 'comment:key',
+
+    /**
+     * 敏感词文件路径
+     */
+    'word_file_path' => '../resources/sensitive/SensitiveWord.txt',
 ];

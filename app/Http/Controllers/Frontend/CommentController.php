@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Comments;
 use App\Models\Modules;
+use DfaFilter\SensitiveHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -72,9 +73,15 @@ class CommentController extends BasicController
                 throw new \Exception('评论内容不能超过140字！');
             }
 
+            // 过滤敏感词
+            $handle = SensitiveHelper::init()->setTreeByFile(config('frontend.word_file_path'));
+            if ($handle->islegal($content)) {
+                $filterContent = $handle->replace($content, '*', true);
+            }
+
             $data['m_id'] = $m_id;
             $data['uid'] = Auth::id();
-            $data['content'] = $content;
+            $data['content'] = $filterContent ?? $content;
             $data['ctime'] = date('Y-m-d H:i:s', time());
             // 添加评论
             $res = Comments::insertGetId($data);

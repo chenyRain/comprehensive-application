@@ -13,6 +13,7 @@
         "hhxsv5/laravel-s": "~3.5.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "lustre/php-dfa-sensitive": "^1.4",
         "predis/predis": "^1.1"
     },
     "require-dev": {
