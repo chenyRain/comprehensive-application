@@ -14,15 +14,22 @@ class AdminUser extends Authenticatable
     /**
      * 通过用户名查找单条数据
      * @param string $username
-     * @return null
      */
-    public static function findByUserName($username = '')
+    public static function findByUserName($username)
     {
-        if (!$username) {
-            return null;
-        }
         return self::select('id', 'name', 'password')
-            ->where()
+            ->where('name', $username)
             ->first();
+    }
+
+
+    /**
+     * 根据用户名判断用户是否存在
+     * @param $username
+     * @return mixed
+     */
+    public static function isExistsByUserName($username)
+    {
+        return self::where('name', $username)->exists();
     }
 }

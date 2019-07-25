@@ -39,6 +39,9 @@ class LoginController extends BaseController
             if (session('CAPTCHA_IMG') !== $data['captcha']) {
                 throw new \Exception('验证码错误');
             }
+            if (! AdminUser::isExistsByUserName($data['username'])) {
+                throw new \Exception('该账户不存在');
+            }
 
             $credentials = ['name' => $data['username'], 'password' => $data['password']];
             if (! Auth::guard('admin')->attempt($credentials)) {

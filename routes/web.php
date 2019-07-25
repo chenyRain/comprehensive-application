@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('register', 'LoginController@register')->name('site.register');
     Route::post('register-store', 'LoginController@registerStore')->name('site.register-store');
 
-    Route::group(['middleware' => 'check.login'], function () {
+    Route::group(['middleware' => 'auth'], function () {
         Route::get('logout', 'LoginController@logout')->name('site.logout');
         Route::get('/', 'MainController@index')->name('index');
         Route::get('profile', 'ProfileController@index')->name('profile.index');
@@ -38,4 +38,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('login', 'LoginController@login')->name('admin.login');
     Route::post('login-store', 'LoginController@loginStore');
     Route::get('getCaptcha', 'LoginController@getCaptcha')->name('admin.getCaptcha');
+
+    Route::group(['middleware' => 'auth:admin'], function () {
+        Route::get('/', 'IndexController@index')->name('admin.index');
+    });
 });
