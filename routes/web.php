@@ -33,3 +33,9 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('seckill/result', 'SeckillController@result')->name('seckill.result');
     });
 });
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('login', 'LoginController@login')->name('admin.login');
+    Route::post('login-store', 'LoginController@loginStore');
+    Route::get('getCaptcha', 'LoginController@getCaptcha')->name('admin.getCaptcha');
+});

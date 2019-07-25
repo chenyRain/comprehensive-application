@@ -185,15 +185,15 @@ a:active{color:#0a8ddf}
 }
 i.icon{position:relative;display:inline-block;font-style:normal;vertical-align:middle;background-repeat:no-repeat;background-position:center;background-size:100% auto}
 i.icon.icon-f7{width:1.45rem;height:1.45rem;background-image:url(../img/i-f7.png)}
-i.icon.icon-form-name{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-name.png)}
-i.icon.icon-form-password{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-password.png)}
+i.icon.icon-form-name{width:1.45rem;height:1.45rem;background-image:url(../../img/i-form-name.png)}
+i.icon.icon-form-password{width:1.45rem;height:1.45rem;background-image:url(../../img/i-form-password.png)}
 i.icon.icon-form-email{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-email.png)}
 i.icon.icon-form-calendar{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-calendar.png)}
 i.icon.icon-form-tel{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-tel.png)}
 i.icon.icon-form-gender{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-gender.png)}
 i.icon.icon-form-toggle{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-toggle.png)}
-i.icon.icon-form-comment{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-comment.png)}
-i.icon.icon-form-settings{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-settings.png)}
+i.icon.icon-form-comment{width:1.45rem;height:1.45rem;background-image:url(../../img/i-form-comment.png)}
+i.icon.icon-form-settings{width:1.45rem;height:1.45rem;background-image:url(../../img/i-form-settings.png)}
 i.icon.icon-form-url{width:1.45rem;height:1.45rem;background-image:url(../img/i-form-url.png)}
 i.icon.icon-next,i.icon.icon-prev{width:.75rem;height:.75rem}
 i.icon.icon-next{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2015%2015'%3E%3Cg%3E%3Cpath%20fill%3D'%23007aff'%20d%3D'M1%2C1.6l11.8%2C5.8L1%2C13.4V1.6%20M0%2C0v15l15-7.6L0%2C0L0%2C0z'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")}
@@ -286,7 +286,7 @@ i.icon.icon-plus{width:1.25rem;height:1.25rem;font-size:1.55rem;font-weight:100;
 .list-block .item-after{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;max-height:1.4rem;margin-left:.25rem;color:#5f646e;white-space:nowrap;-webkit-flex-shrink:0;-ms-flex:0 0 auto;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}
 .list-block .smart-select .item-after{position:relative;max-width:70%;overflow:hidden;text-overflow:ellipsis}
 .list-block .item-link{display:block;color:inherit;-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s}
-.list-block .item-link .item-inner{padding-right:1.5rem;background-image:url(../img/i-list-chevron-right.png);background-repeat:no-repeat;background-position:97% center;background-position:-webkit-calc(100% - .5rem) center;background-position:calc(100% - .5rem) center;background-size:.7rem}
+.list-block .item-link .item-inner{padding-right:1.5rem;background-image:url(../../img/i-list-chevron-right.png);background-repeat:no-repeat;background-position:97% center;background-position:-webkit-calc(100% - .5rem) center;background-position:calc(100% - .5rem) center;background-size:.7rem}
 .list-block .item-link.active-state,html:not(.watch-active-state) .list-block .item-link:active{background-color:#d9d9d9;-webkit-transition-duration:0s;-o-transition-duration:0s;transition-duration:0s}
 .list-block .item-link.active-state .item-inner,html:not(.watch-active-state) .list-block .item-link:active .item-inner{border-right-color:transparent;border-bottom-color:transparent}
 .list-block .item-link.list-button{display:block;padding:0 .75rem;line-height:2.15rem;color:#0894ec;text-align:center;border-bottom:1px solid #e7e7e7}
@@ -317,7 +317,7 @@ i.icon.icon-plus{width:1.25rem;height:1.25rem;font-size:1.55rem;font-weight:100;
 .list-block .list-group+.list-group ul{border-top:0;border-right:0}
 .list-block .item-divider,.list-block .list-group-title{position:relative;max-width:100%;padding:.2rem .75rem;margin-top:-1px;overflow:hidden;color:#e7e7e7;text-overflow:ellipsis;white-space:nowrap;background:#f7f7f7;border-top:1px solid #e7e7e7}
 .list-block .list-group-title{position:relative;position:-webkit-sticky;position:-moz-sticky;position:sticky;top:0;z-index:20;margin-top:0;border-top:0;border-right:0}
-.list-block .sortable-handler{position:absolute;top:0;right:0;bottom:1px;z-index:10;width:1.75rem;visibility:hidden;background-image:url(../img/i-sortable-handler.png);background-repeat:no-repeat;background-position:center;background-size:.9rem .6rem;opacity:0}
+.list-block .sortable-handler{position:absolute;top:0;right:0;bottom:1px;z-index:10;width:1.75rem;visibility:hidden;background-image:url(../../img/i-sortable-handler.png);background-repeat:no-repeat;background-position:center;background-size:.9rem .6rem;opacity:0}
 .list-block.sortable .item-inner{-webkit-transition-duration:.3s;-o-transition-duration:.3s;transition-duration:.3s}
 .list-block.sortable-opened .sortable-handler{visibility:visible;opacity:1}
 .list-block.sortable-opened .item-inner,.list-block.sortable-opened .item-link .item-inner{padding-right:1.5rem}
@@ -716,7 +716,7 @@ body.panel-closing .page{-webkit-transition:.4s;-o-transition:.4s;transition:.4s
 .notification .notification-media{width:1rem;height:1rem}
 .notification .notification-media img{width:100%}
 .notification .notification-handle-bar{position:absolute;bottom:.2rem;left:50%;width:2rem;height:.3rem;background:#fff;border-radius:.15rem;opacity:.5;-webkit-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0)}
-@font-face{font-family:iconfont-sm;src:url(../fonts/light7.eot);src:url(../fonts/light7.eot?#iefix) format('embedded-opentype'),url(../fonts/light7.woff) format('woff'),url(../fonts/light7.ttf) format('truetype'),url(../fonts/light7.svg) format('svg')}
+@font-face{font-family:iconfont-sm;src:url(../../fonts/light7.eot);src:url(../../fonts/light7.eot?#iefix) format('embedded-opentype'),url(../../fonts/light7.woff) format('woff'),url(../../fonts/light7.ttf) format('truetype'),url(../../fonts/light7.svg) format('svg')}
 .icon{font-family:iconfont-sm!important;font-style:normal;-webkit-font-smoothing:antialiased;-webkit-text-stroke-width:.2px;-moz-osx-font-smoothing:grayscale}
 .icon-app:before{content:"\e605"}
 .icon-browser:before{content:"\e606"}
