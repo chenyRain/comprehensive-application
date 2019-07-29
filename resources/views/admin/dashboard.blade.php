@@ -91,7 +91,7 @@
                     <div class="panel-body">
                         <div class="commentbox">
                             <ul class="commentList">
-                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
+                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="{{ asset('/img/admin/comment-avatar-default.jpg') }}"></i></a>
                                     <div class="comment-main">
                                         <header class="comment-header">
                                             <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -103,7 +103,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
+                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="{{ asset('/img/admin/comment-avatar-default.jpg') }}"></i></a>
                                     <div class="comment-main">
                                         <header class="comment-header">
                                             <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
+                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="{{ asset('/img/admin/comment-avatar-default.jpg') }}"></i></a>
                                     <div class="comment-main">
                                         <header class="comment-header">
                                             <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于
@@ -127,7 +127,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="http://static.h-ui.net/h-ui/images/ucnter/avatar-default.jpg"></i></a>
+                                <li class="item cl"> <a href="#"><i class="avatar size-L radius"><img alt="" src="{{ asset('/img/admin/comment-avatar-default.jpg') }}"></i></a>
                                     <div class="comment-main">
                                         <header class="comment-header">
                                             <div class="comment-meta"><a class="comment-author" href="#">慕枫</a> 评论于

@@ -11,4 +11,9 @@ class IndexController extends Controller
     {
         return view('admin.index');
     }
+
+    public function iframe()
+    {
+        return view('admin.dashboard');
+    }
 }

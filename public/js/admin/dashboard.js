@@ -5,7 +5,7 @@ layui.use(['layer','jquery'], function(){
     var myChart;
     require.config({
         paths: {
-            echarts: './js/admin/lib/echarts'
+            echarts: '/js/admin/lib/echarts'
         }
     });
     require(

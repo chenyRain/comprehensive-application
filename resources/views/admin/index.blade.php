@@ -86,7 +86,7 @@
                     <div class="layui-tab-content">
                         <div class="layui-tab-item layui-show" style="background: #f5f5f5;">
                             <!--1-->
-                            <iframe src="./dashboard.blade.php" width="100%" height="100%" name="iframe" scrolling="auto"
+                            <iframe src="{{ route('admin.index.iframe') }}" width="100%" height="100%" name="iframe" scrolling="auto"
                                     class="iframe" framborder="0"></iframe>
                             <!--1end-->
                         </div>

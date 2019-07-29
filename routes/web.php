@@ -39,7 +39,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('login-store', 'LoginController@loginStore');
     Route::get('getCaptcha', 'LoginController@getCaptcha')->name('admin.getCaptcha');
 
-    Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['middleware' => 'check.login'], function () {
         Route::get('/', 'IndexController@index')->name('admin.index');
+        Route::get('/index/iframe', 'IndexController@iframe')->name('admin.index.iframe');
     });
 });
